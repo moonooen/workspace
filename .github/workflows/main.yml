@@ -15,6 +15,7 @@ on:
         options:
           - Playground
           - AOSP
+          - AOSP 20
 
 env:
   CHAT_ID: "7538384857"
@@ -46,10 +47,14 @@ jobs:
         BUILD_TIME=$(date +'%H%M-%d%m%y')
         echo "BUILD_TIME=$BUILD_TIME" >> $GITHUB_ENV
         
+        mkdir -p tc
         if [ "${{ github.event.inputs.toolchain }}" = "Playground" ]; then
             git clone --depth=1 https://github.com/KaiFujiro/playgroundtc -b 17 tc
+        elif [ "${{ github.event.inputs.toolchain }}" = "AOSP 20" ]; then
+            wget -q https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/62cdcefa89e31af2d72c366e8b5ef8db84caea62/clang-r547379.tar.gz
+            tar -xzf clang-r547379.tar.gz -C tc
+            rm clang-r547379.tar.gz
         else
-            mkdir tc
             wget -qO- https://github.com/bachnxuan/aosp_clang_mirror/releases/download/clang-r584948b-14863223/clang-r584948b.tar.gz | tar -xz -C tc
         fi
         export PATH=$PWD/tc/bin:$PATH
