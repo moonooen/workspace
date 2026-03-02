@@ -3,9 +3,9 @@ name: Moonell Unified Build
 on:
   workflow_dispatch:
     inputs:
-      repository: { description: 'Repo', required: true, default: 'KaiFujiro/fuschia' }
-      branch: { description: 'Branch', required: true, default: 'aosp-16' }
-      defconfig: { description: 'Defconfig', required: true, default: 'vendor/alioth_defconfig' }
+      repository: { description: 'Repo', required: true, default: 'KaiFujiro/e5b3f2' }
+      branch: { description: 'Branch', required: true, default: 'rebase' }
+      defconfig: { description: 'Defconfig', required: true, default: 'alioth_defconfig' }
       kernelsu_branch: { description: 'KSU Branch', required: false, default: 'master' }
       toolchain: 
         description: 'Pilih Toolchain'
